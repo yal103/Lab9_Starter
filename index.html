@@ -100,8 +100,72 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
+    const people = [
+        {
+            first: 'René',
+            last: 'Magritte',
+        },
+        {
+            first: 'Chaim',
+            last: 'Soutine',
+            birthday: '18930113',
+        },
+        {
+            first: 'Henri',
+            last: 'Matisse',
+        }
+    ];
+
+    const first = () => { second(); };
+    const second = () => { third(); };
+    const third = () => { fourth(); };
+    const fourth = () => { console.trace(); };
+    first();
+
     // Start your code here
     // You may move this JS to another file if you wish
+
+    // Console Log
+    errorBtns[0].addEventListener('click', () => console.log('Logging to console'));
+
+    // Console Error
+    errorBtns[1].addEventListener('click', () => console.error('ERROR!'));
+
+    // Console Count
+    errorBtns[2].addEventListener('click', () => console.count('Count'));
+
+    // Console Warn
+    errorBtns[3].addEventListener('click', () => console.warn('WARNING!'));
+
+    // Console Assert
+    errorBtns[4].addEventListener('click', () => console.assert(false, 'FAIL!'));
+
+    // Console Clear
+    errorBtns[5].addEventListener('click', () => console.clear());
+
+    // Console Dir
+    errorBtns[6].addEventListener('click', () => console.dir(document.head));
+
+    // Console dirxml
+    errorBtns[7].addEventListener('click', () => console.dirxml(document));
+
+    // Console Group Start
+    errorBtns[8].addEventListener('click', () => console.group('Group Start'));
+
+    // Console Group End
+    errorBtns[9].addEventListener('click', () => console.groupEnd('Group Start'));
+
+    // Console Table
+    errorBtns[10].addEventListener('click', () => console.table(people));
+
+    // Start Timer
+    errorBtns[11].addEventListener('click', () => console.time());
+
+    // End Timer
+    errorBtns[12].addEventListener('click', () => console.timeEnd());
+    
+    // Console Trace
+    errorBtns[13].addEventListener('click', () => console.trace(first()));
   </script>
 </body>
 
