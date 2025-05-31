@@ -120,7 +120,6 @@
     const second = () => { third(); };
     const third = () => { fourth(); };
     const fourth = () => { console.trace(); };
-    first();
 
     // Start your code here
     // You may move this JS to another file if you wish
@@ -165,7 +164,7 @@
     errorBtns[12].addEventListener('click', () => console.timeEnd());
     
     // Console Trace
-    errorBtns[13].addEventListener('click', () => console.trace(first()));
+    errorBtns[13].addEventListener('click', () => first());
   </script>
 </body>
 
