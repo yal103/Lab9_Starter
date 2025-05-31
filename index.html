@@ -89,13 +89,43 @@
 
   <script>
     let form = document.querySelector('form');
+
+    class InvalidOperatorError extends Error {
+        constructor(operator) {
+            super(`Invalid operator: ${operator}`);
+            this.name = 'InvalidOperatorError';
+        }
+    }
+
+
     form.addEventListener('submit', e => {
-      e.preventDefault();
-      let output = document.querySelector('output');
-      let firstNum = document.querySelector('#first-num').value;
-      let secondNum = document.querySelector('#second-num').value;
-      let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        e.preventDefault();
+        let output = document.querySelector('output');
+        let firstNum = document.querySelector('#first-num').value;
+        let secondNum = document.querySelector('#second-num').value;
+        let operator = document.querySelector('#operator').value;
+        // output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+
+        try {
+            if (isNaN(firstNum) || isNaN(secondNum)) {
+                throw new Error('At least one input is not a valid number');
+            }
+
+            if (!['+', '-', '*', '/'].includes(operator)) {
+                throw new InvalidOperatorError(operator);
+            }
+
+            if (operator === '/' && Number(secondNum) === 0) {
+                throw new Error("Can't divide by zero.");
+            }
+
+            output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        } catch (err) {
+            console.error(err.name + ': ' + err.message);
+            output.innerHTML = `Error: ${err.message}`;
+        } finally {
+            console.log('Finished.');
+        }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
